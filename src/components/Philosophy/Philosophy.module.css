@@ -1,0 +1,202 @@
+/* Philosophy Section - Experimental Flowing Pillars
+ * Overlapping cards with 3D tilt, scroll-triggered reveals
+ */
+
+.philosophy {
+  background: linear-gradient(180deg, var(--mist) 0%, #e8f0ee 100%);
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--section-gap);
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: var(--text-h2);
+  color: var(--evergreen);
+  margin-bottom: var(--space-xl);
+  opacity: 0;
+  animation: fadeInUp 0.8s var(--ease-natural) 0.2s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pillars Container - Overlapping Layout */
+.pillarsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  max-width: 1100px;
+  margin-inline: auto;
+  perspective: 1500px;
+  padding-block: var(--space-lg);
+}
+
+/* Individual Pillar Card - Frosted Glass with 3D Tilt */
+.pillarCard {
+  position: relative;
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background: rgba(244, 247, 246, 0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(15, 26, 23, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+
+  opacity: 0;
+  transform: translateY(100px);
+  transition:
+    transform 0.6s var(--ease-natural),
+    opacity 0.6s var(--ease-natural),
+    box-shadow 0.4s var(--ease-natural);
+
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+}
+
+.pillarCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover Effect - Lift and Glow */
+.pillarCard:hover {
+  box-shadow:
+    0 16px 48px rgba(15, 26, 23, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 0 0 1px var(--pillar-color);
+  transform: translateY(-8px) scale(1.02) !important;
+}
+
+.pillarCard:hover .accentLine {
+  width: 100%;
+  opacity: 1;
+}
+
+/* Card Inner Content */
+.cardInner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+/* Icon */
+.icon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: var(--space-md);
+  filter: grayscale(0.2);
+  transition: transform 0.4s var(--ease-natural);
+}
+
+.pillarCard:hover .icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Pillar Title */
+.pillarTitle {
+  font-size: 2rem;
+  font-family: var(--font-headline);
+  color: var(--evergreen);
+  margin-bottom: var(--space-sm);
+  transition: color 0.3s var(--ease-natural);
+}
+
+.pillarCard:hover .pillarTitle {
+  color: var(--pillar-color);
+}
+
+/* Pillar Description */
+.pillarDescription {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--ink);
+  opacity: 0.85;
+  margin-bottom: var(--space-md);
+}
+
+/* Decorative Accent Line */
+.accentLine {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 4px;
+  width: 60px;
+  background: var(--pillar-color);
+  border-radius: var(--radius-pill);
+  opacity: 0.5;
+  transition:
+    width 0.5s var(--ease-natural),
+    opacity 0.5s var(--ease-natural);
+}
+
+/* Staggered animation delays for each card */
+.pillarCard:nth-child(1) {
+  --pillar-color: var(--moss);
+}
+
+.pillarCard:nth-child(2) {
+  --pillar-color: var(--cedar);
+}
+
+.pillarCard:nth-child(3) {
+  --pillar-color: var(--river);
+}
+
+/* Responsive Layout */
+@media (max-width: 900px) {
+  .pillarsContainer {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .pillarCard {
+    max-width: 500px;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+
+  .pillarTitle {
+    font-size: 1.5rem;
+  }
+
+  .pillarDescription {
+    font-size: 1rem;
+  }
+
+  .icon {
+    font-size: 2.5rem;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pillarCard {
+    animation: none;
+    transition: opacity 0.2s;
+  }
+
+  .pillarCard:hover {
+    transform: none !important;
+  }
+
+  .icon,
+  .accentLine {
+    transition: none;
+  }
+}

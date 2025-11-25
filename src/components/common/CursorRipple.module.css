@@ -1,0 +1,68 @@
+/* Subtle cursor effects - like ripples on water */
+
+.cursorGlow {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  margin-left: -100px;
+  margin-top: -100px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  background: radial-gradient(
+    circle,
+    rgba(58, 124, 165, 0.08) 0%,
+    rgba(76, 122, 90, 0.04) 30%,
+    transparent 70%
+  );
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+  mix-blend-mode: multiply;
+}
+
+.ripple {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  border: 2px solid var(--river);
+  animation: rippleExpand 1.2s var(--ease-natural) forwards;
+}
+
+@keyframes rippleExpand {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(30);
+    opacity: 0;
+  }
+}
+
+/* Hide on touch devices */
+@media (hover: none) {
+  .cursorGlow,
+  .ripple {
+    display: none;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cursorGlow {
+    display: none;
+  }
+
+  .ripple {
+    animation: none;
+    display: none;
+  }
+}

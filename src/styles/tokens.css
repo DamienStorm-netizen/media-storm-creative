@@ -1,0 +1,66 @@
+/* Media Storm Creative - Design Tokens
+ * Organic minimalism: clean structure + natural, tactile surfaces
+ */
+
+:root {
+  /* Color Palette - Nature Inspired */
+  --evergreen: #1F3B2E;  /* Anchors: headers, footer background */
+  --moss: #4C7A5A;        /* Accent, buttons hover */
+  --cedar: #8E5A3B;       /* Secondary accents, small icons */
+  --river: #3A7CA5;       /* CTAs, links */
+  --mist: #F4F7F6;        /* Main background */
+  --stone: #C9CFC9;       /* Cards, panels */
+  --ink: #0F1A17;         /* Primary text */
+
+  /* Typography Scale */
+  --font-headline: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'Courier New', monospace;
+
+  --text-h1: clamp(48px, 5vw, 64px);
+  --text-h2: clamp(28px, 3vw, 36px);
+  --text-body: 16px;
+  --line-height-body: 1.5;
+  --line-height-heading: 1.2;
+
+  /* Spacing - Generous Vertical Rhythm */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4.5rem;
+  --space-xl: 7.5rem;
+  --section-gap: clamp(80px, 10vw, 120px);
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* Shadows - Soft and Organic */
+  --shadow-subtle: 0 2px 8px rgba(15, 26, 23, 0.08);
+  --shadow-lift: 0 6px 20px rgba(15, 26, 23, 0.12);
+  --shadow-hover: 0 12px 32px rgba(15, 26, 23, 0.16);
+
+  /* Layout */
+  --max-content-width: 1200px;
+  --content-padding: clamp(1.5rem, 5vw, 3rem);
+
+  /* Transitions - Gentle, Natural Movement */
+  --ease-natural: cubic-bezier(.22, .9, .35, 1);
+  --duration-quick: 200ms;
+  --duration-base: 350ms;
+  --duration-slow: 520ms;
+
+  /* Effects */
+  --film-grain: 3%;
+  --desaturation: 8%;
+}
+
+/* Dark mode consideration (optional for future) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mist: #1a1a1a;
+    --stone: #2a2a2a;
+    --ink: #f4f7f6;
+  }
+}

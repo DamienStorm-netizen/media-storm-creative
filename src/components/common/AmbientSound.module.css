@@ -1,0 +1,149 @@
+/* Ambient Sound Control - Subtle and elegant */
+
+.soundControl {
+  position: fixed;
+  bottom: auto;
+  top: calc(80vh - 140px); /* Position near bottom of hero - stays consistent across all widths */
+  right: var(--space-lg);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  animation: slideIn 0.6s var(--ease-natural) forwards;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toggleButton {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--stone);
+  background: rgba(244, 247, 246, 0.9);
+  backdrop-filter: blur(12px);
+  color: var(--evergreen);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform var(--duration-base) var(--ease-natural),
+    background var(--duration-base) var(--ease-natural),
+    border-color var(--duration-base) var(--ease-natural),
+    box-shadow var(--duration-base) var(--ease-natural);
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+}
+
+.toggleButton:hover {
+  transform: scale(1.05);
+  background: rgba(244, 247, 246, 1);
+  border-color: var(--moss);
+  box-shadow: var(--shadow-lift);
+}
+
+.toggleButton:active {
+  transform: scale(0.95);
+}
+
+/* Gentle pulse animation when playing */
+.toggleButton.playing {
+  animation: gentlePulse 3s ease-in-out infinite;
+  border-color: var(--river);
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    box-shadow:
+      var(--shadow-subtle),
+      0 0 0 0 rgba(58, 124, 165, 0.4);
+  }
+  50% {
+    box-shadow:
+      var(--shadow-lift),
+      0 0 0 8px rgba(58, 124, 165, 0);
+  }
+}
+
+/* Tooltip */
+.tooltip {
+  background: rgba(31, 59, 46, 0.95);
+  color: var(--mist);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  box-shadow: var(--shadow-lift);
+  animation: tooltipFade 0.4s var(--ease-natural);
+  pointer-events: none;
+}
+
+@keyframes tooltipFade {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .soundControl {
+    /* Keep same vertical position, just adjust spacing */
+    right: var(--space-md);
+  }
+
+  .toggleButton {
+    width: 48px;
+    height: 48px;
+  }
+
+  .tooltip {
+    display: none; /* Hide tooltip on mobile to save space */
+  }
+}
+
+/* Very small screens - ensure it doesn't overlap CTAs */
+@media (max-width: 480px) {
+  .soundControl {
+    top: calc(80vh - 120px);
+    right: var(--space-sm);
+  }
+
+  .toggleButton {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .soundControl,
+  .toggleButton,
+  .tooltip {
+    animation: none;
+    transition: opacity 0.1s;
+  }
+
+  .toggleButton.playing {
+    animation: none;
+  }
+}
+
+/* Accessibility: focus styles */
+.toggleButton:focus-visible {
+  outline: 3px solid var(--moss);
+  outline-offset: 4px;
+}
