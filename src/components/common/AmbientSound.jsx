@@ -4,7 +4,6 @@ import styles from './AmbientSound.module.css'
 const AmbientSound = () => {
   const audioRef = useRef(null)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [showTooltip, setShowTooltip] = useState(true)
 
   // Check localStorage for saved preference
   useEffect(() => {
@@ -15,13 +14,6 @@ const AmbientSound = () => {
         playAudio()
       }, 1000)
     }
-
-    // Hide tooltip after 10 seconds (but keep button visible)
-    const hideTooltipTimer = setTimeout(() => {
-      setShowTooltip(false)
-    }, 10000)
-
-    return () => clearTimeout(hideTooltipTimer)
   }, [])
 
   const playAudio = () => {
@@ -74,7 +66,6 @@ const AmbientSound = () => {
   }
 
   const toggleSound = () => {
-    setShowTooltip(false) // Hide tooltip when interacted with
     if (isPlaying) {
       pauseAudio()
     } else {
@@ -110,10 +101,6 @@ const AmbientSound = () => {
       <audio ref={audioRef} loop preload="auto">
         <source src="/audio/forest-ambient.mp3" type="audio/mpeg" />
       </audio>
-
-      {!isPlaying && showTooltip && (
-        <span className={styles.tooltip}>Add ambient sounds</span>
-      )}
     </div>
   )
 }

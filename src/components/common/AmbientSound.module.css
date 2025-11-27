@@ -2,9 +2,8 @@
 
 .soundControl {
   position: fixed;
-  bottom: auto;
-  top: calc(80vh - 140px); /* Position near bottom of hero - stays consistent across all widths */
-  right: var(--space-lg);
+  top: var(--space-md);
+  right: var(--space-md);
   z-index: 1000;
   display: flex;
   align-items: center;
@@ -15,17 +14,17 @@
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
 .toggleButton {
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 2px solid var(--stone);
   background: rgba(244, 247, 246, 0.9);
@@ -42,6 +41,11 @@
     box-shadow var(--duration-base) var(--ease-natural);
   box-shadow: var(--shadow-subtle);
   position: relative;
+}
+
+.toggleButton svg {
+  width: 20px;
+  height: 20px;
 }
 
 .toggleButton:hover {
@@ -74,57 +78,22 @@
   }
 }
 
-/* Tooltip */
-.tooltip {
-  background: rgba(31, 59, 46, 0.95);
-  color: var(--mist);
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
-  font-size: 0.875rem;
-  white-space: nowrap;
-  box-shadow: var(--shadow-lift);
-  animation: tooltipFade 0.4s var(--ease-natural);
-  pointer-events: none;
-}
-
-@keyframes tooltipFade {
-  from {
-    opacity: 0;
-    transform: translateX(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .soundControl {
-    /* Keep same vertical position, just adjust spacing */
-    right: var(--space-md);
-  }
-
-  .toggleButton {
-    width: 48px;
-    height: 48px;
-  }
-
-  .tooltip {
-    display: none; /* Hide tooltip on mobile to save space */
-  }
-}
-
-/* Very small screens - ensure it doesn't overlap CTAs */
-@media (max-width: 480px) {
-  .soundControl {
-    top: calc(80vh - 120px);
+    top: var(--space-sm);
     right: var(--space-sm);
   }
 
   .toggleButton {
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .toggleButton svg {
+    width: 18px;
+    height: 18px;
   }
 }
 

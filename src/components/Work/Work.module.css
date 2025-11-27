@@ -1,0 +1,236 @@
+/* Featured Work Section - Showcase with elegance */
+
+.work {
+  position: relative;
+  padding-block: var(--section-gap);
+  background: linear-gradient(180deg,
+    var(--moss) 0%,
+    var(--stone)
+  );
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: var(--text-h2);
+  color: var(--evergreen);
+  margin-bottom: var(--space-sm);
+  opacity: 0;
+  animation: fadeInUp 0.8s var(--ease-natural) 0.2s forwards;
+}
+
+.sectionSubtitle {
+  text-align: center;
+  font-size: 1.25rem;
+  color: var(--ink);
+  opacity: 0.85;
+  /*margin-bottom: var(--space-xl);*/
+  animation: fadeInUp 0.8s var(--ease-natural) 0.4s forwards;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Project Card - Split layout with device mockup */
+.projectCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+  max-width: 1200px;
+  margin-inline: auto;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s var(--ease-natural), transform 0.8s var(--ease-natural);
+}
+
+.projectCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Device Mockup with iframe */
+.projectImage {
+  position: relative;
+  perspective: 1000px;
+}
+
+.mockup {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  padding: 12px;
+  box-shadow:
+    0 20px 60px rgba(15, 26, 23, 0.15),
+    0 0 0 1px rgba(15, 26, 23, 0.05);
+  transition: transform 0.4s var(--ease-natural), box-shadow 0.4s var(--ease-natural);
+  margin-top: 82px;
+}
+
+.mockup:hover {
+  transform: translateY(-8px) rotateY(2deg);
+  box-shadow:
+    0 30px 80px rgba(15, 26, 23, 0.2),
+    0 0 0 1px rgba(15, 26, 23, 0.08);
+}
+
+.iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  border-radius: 12px;
+  display: block;
+  background: var(--mist);
+}
+
+/* Project Info */
+.projectInfo {
+  padding: var(--space-lg);
+}
+
+.projectBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 8px 16px;
+  background: rgba(76, 122, 90, 0.1);
+  border: 1px solid rgba(76, 122, 90, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #F4F7F6;
+  margin-bottom: var(--space-md);
+}
+
+.badgeIcon {
+  font-size: 1.125rem;
+}
+
+.projectTitle {
+  font-size: 2.5rem;
+  font-family: var(--font-headline);
+  color: var(--evergreen);
+  margin-bottom: var(--space-md);
+  line-height: 1.2;
+}
+
+.projectDescription {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--ink);
+  opacity: 0.9;
+  margin-bottom: var(--space-md);
+}
+
+/* Features List */
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-md) 0;
+}
+
+.featuresList li {
+  font-size: 1rem;
+  color: var(--ink);
+  padding: var(--space-xs) 0;
+  opacity: 0.85;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Project Links */
+.projectLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.primaryLink {
+  background: var(--river);
+  color: white;
+  border-radius: var(--radius-pill);
+  padding: 14px 32px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: var(--shadow-subtle);
+  transition:
+    transform var(--duration-base) var(--ease-natural),
+    background var(--duration-base) var(--ease-natural),
+    box-shadow var(--duration-base) var(--ease-natural);
+  text-decoration: none;
+}
+
+.primaryLink:hover {
+  background: var(--moss);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-hover);
+}
+
+.comingSoon {
+  font-size: 0.875rem;
+  color: #C9CFC9;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Responsive Layout */
+@media (max-width: 900px) {
+  .projectCard {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .iframe {
+    height: 500px;
+  }
+
+  .projectTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: clamp(24px, 6vw, 36px);
+  }
+
+  .iframe {
+    height: 400px;
+  }
+
+  .projectInfo {
+    padding: var(--space-md);
+  }
+
+  .projectTitle {
+    font-size: 1.75rem;
+  }
+
+  .projectDescription {
+    font-size: 1rem;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .projectCard,
+  .mockup {
+    animation: none;
+    transition: opacity 0.2s;
+  }
+
+  .mockup:hover {
+    transform: none;
+  }
+}

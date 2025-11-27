@@ -174,34 +174,40 @@
   box-shadow: var(--shadow-subtle);
   transition:
     transform var(--duration-base) var(--ease-natural),
+    background var(--duration-base) var(--ease-natural),
     box-shadow var(--duration-base) var(--ease-natural);
 }
 
 .primaryCta:hover {
+  background: var(--moss);
   transform: scale(1.02);
   box-shadow: var(--shadow-hover);
   color: white;
 }
 
-/* Secondary CTA - Outlined Cedar */
+/* Secondary CTA - Solid Cedar */
 .secondaryCta {
-  background: transparent;
-  color: var(--cedar);
+  background: var(--cedar);
+  color: white;
   border: 2px solid var(--cedar);
   border-radius: var(--radius-pill);
   padding: 10px 26px;
   font-weight: 600;
   font-size: 1rem;
+  box-shadow: var(--shadow-subtle);
   transition:
     background var(--duration-base) var(--ease-natural),
-    color var(--duration-base) var(--ease-natural),
-    transform var(--duration-base) var(--ease-natural);
+    border-color var(--duration-base) var(--ease-natural),
+    transform var(--duration-base) var(--ease-natural),
+    box-shadow var(--duration-base) var(--ease-natural);
 }
 
 .secondaryCta:hover {
-  background: var(--cedar);
+  background: var(--moss);
+  border-color: var(--moss);
   color: white;
   transform: scale(1.02);
+  box-shadow: var(--shadow-hover);
 }
 
 /* Respect reduced motion */

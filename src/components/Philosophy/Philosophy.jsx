@@ -98,8 +98,17 @@ const Philosophy = () => {
       className={`${styles.philosophy} section`}
       ref={sectionRef}
     >
+      {/* Blurred background */}
+      <div className={styles.bgBlur}></div>
+      <div className={styles.bgGradient}></div>
+
       <div className="container">
-        <h2 className={styles.sectionTitle}>Three Pillars</h2>
+        <h2 className={styles.sectionTitle}>
+          Rooted in Nature. Crafted as Story. Built for Community.
+        </h2>
+        <p className={styles.sectionSubtitle}>
+          Three eternal principles behind every site we touch.
+        </p>
 
         <div className={styles.pillarsContainer}>
           {pillars.map((pillar, index) => {
@@ -110,9 +119,9 @@ const Philosophy = () => {
             const translateY = isInView ? 0 : 100
 
             // Staggered reveal based on scroll progress
-            const revealProgress = Math.max(0, (scrollProgress - baseDelay) * 2)
-            const opacity = Math.min(1, revealProgress)
-            const scale = 0.9 + (revealProgress * 0.1)
+            const revealProgress = Math.max(0, Math.min(1, (scrollProgress - baseDelay) * 2))
+            const opacity = isInView ? 0.7 : 0
+            const scale = isInView ? 1 : 0.9
 
             return (
               <div
