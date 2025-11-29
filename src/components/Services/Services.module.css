@@ -84,7 +84,7 @@
 /* Individual Service Card */
 .serviceCard {
   position: relative;
-  padding: var(--space-xl);
+  padding: var(--space-xl) var(--space-sm);
   background: rgba(201,207,201,.8);
   border-radius: var(--radius-lg);
   border: 2px solid var(--stone);
@@ -220,6 +220,12 @@
 }
 
 /* Responsive Layout */
+@media (max-width: 1400px) {
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 900px) {
   .servicesGrid {
     grid-template-columns: 1fr;

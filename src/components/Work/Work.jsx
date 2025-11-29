@@ -4,6 +4,17 @@ import styles from './Work.module.css'
 const Work = () => {
   const sectionRef = useRef(null)
   const [isInView, setIsInView] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent))
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Scroll-triggered reveal with Intersection Observer
   useEffect(() => {
@@ -39,11 +50,30 @@ const Work = () => {
         <div className={`${styles.projectCard} ${isInView ? styles.visible : ''}`}>
           <div className={styles.projectImage}>
             <div className={styles.mockup}>
-              <iframe
-                src="https://lunar-almanac.playgroundofthesenses.com/"
-                title="Lunar Almanac PWA"
-                className={styles.iframe}
-              />
+              {isMobile ? (
+                <a
+                  href="https://lunar-almanac.playgroundofthesenses.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.mobilePreview}
+                >
+                  <div className={styles.previewPlaceholder}>
+                    <div className={styles.previewIcon}>🌙</div>
+                    <div className={styles.previewText}>Tap to view Lunar Almanac</div>
+                    <div className={styles.previewSubtext}>Opens in new tab</div>
+                  </div>
+                </a>
+              ) : (
+                <iframe
+                  src="https://lunar-almanac.playgroundofthesenses.com/"
+                  title="Lunar Almanac PWA"
+                  className={styles.iframe}
+                  loading="lazy"
+                  sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+                  allow="accelerometer; gyroscope"
+                  scrolling="yes"
+                />
+              )}
             </div>
           </div>
 
